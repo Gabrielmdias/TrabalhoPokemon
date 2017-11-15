@@ -5,14 +5,16 @@
  */
 package trabpokemon;
 
+import java.util.Scanner;
+
 /**
  *
  * @author gabriel
  */
 public class Batalha {
     
-    private final Jogador jogador1 = new Humano();
-    private final Jogador jogador2 = new Humano();
+    private final Jogador[] jogador = new Humano[2];
+    private final Jogador[] maquina = new Maquina[2];
     
    
     public void carregarTabelhas() {
@@ -20,6 +22,26 @@ public class Batalha {
     }
     
     public void inicializarJogadores() {
+        Scanner scanner = new Scanner(System.in);
+        int jogadorMaquina, qtdePokemon, especiePokemon, levelPokemon, atkPokemon[];
+        jogadorMaquina = scanner.nextInt();
+        qtdePokemon = scanner.nextInt();
+        System.out.println("Jogador: "+jogadorMaquina);
+        System.out.println("Quantidade: "+qtdePokemon);
+        for (int i = 0; i < qtdePokemon; i++) {
+            especiePokemon = scanner.nextInt();
+            levelPokemon = scanner.nextInt();
+            atkPokemon = new int[4];
+            for (int j = 0; j < 4; j++) {
+                atkPokemon[j] = scanner.nextInt();
+            }
+            System.out.println("Especie: "+ especiePokemon);
+            System.out.println("Level: "+ levelPokemon);
+            System.out.println("Atk: "+atkPokemon[0]);
+            System.out.println("Atk: "+atkPokemon[1]);
+            System.out.println("Atk: "+atkPokemon[2]);
+            System.out.println("Atk: "+atkPokemon[3]);
+        }
         
     }
     

@@ -5,21 +5,17 @@
  */
 package trabpokemon;
 
-import java.util.Scanner;
-
 /**
  *
  * @author gabriel
  */
-public class TrabPokemon {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Batalha bat1 = new Batalha();
-        bat1.inicializarJogadores();
-
+public class Especie {
+    private int id;
+    private String nome;
+    private double baseHp, baseAtk, baseDef, baseSpe, baseSpd;
+    
+    public double calcularAtributo() {
+        return 0;
     }
     
 }
