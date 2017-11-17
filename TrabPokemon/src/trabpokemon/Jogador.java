@@ -5,11 +5,21 @@
  */
 package trabpokemon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author gabriel
  */
 public abstract class Jogador {
+    
+    private final List<Pokemon> pokemons;
+
+    public Jogador() {
+        this.pokemons = new ArrayList<>(6);
+    }
+    
     
     public abstract void escolherComando();
     

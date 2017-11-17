@@ -9,17 +9,19 @@ package trabpokemon;
  *
  * @author gabriel
  */
-public enum Tipo {
-    NONE("arquivo"),
-    BUG("arq"),
-    DRAGON("arq");
+public enum Status {
+    OK("Ok"),
+    FAINTED("Fainted"),
+    BURN("Burn"),
+    FROZEN("Frozen"),
+    PARALYSIS("Paralysis"),
+    POISON("Poison"),
+    SLEEP("Sleep");
     
-    // adicionar restante depois
+    private final String status;
     
-    private final String tipo;
-    
-    Tipo(String tipo){
-        this.tipo = tipo;
+    Status(String status){
+        this.status = status;
     }
     
 }

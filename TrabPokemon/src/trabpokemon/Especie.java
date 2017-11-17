@@ -13,6 +13,7 @@ public class Especie {
     private int id;
     private String nome;
     private double baseHp, baseAtk, baseDef, baseSpe, baseSpd;
+    private Tipo tipo1, tipo2;
     
     public double calcularAtributo() {
         return 0;

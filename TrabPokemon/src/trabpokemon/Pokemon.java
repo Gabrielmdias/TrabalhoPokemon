@@ -14,6 +14,9 @@ public class Pokemon {
     private double hpAtual, hpMax, atk, def, spe, spd;
     private int modifierAccuracy, modifierEvasion, modifierAtk, modifierSpe, modifierSpd;
     private boolean confusion, finch;
+    private Especie especie;
+    private Ataque ataque;
+    private Status status;
     
    
     public double valorAtributo() {

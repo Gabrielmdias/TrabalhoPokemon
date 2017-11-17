@@ -5,6 +5,8 @@
  */
 package trabpokemon;
 
+import java.util.Scanner;
+
 /**
  *
  * @author gabriel
@@ -16,7 +18,27 @@ public class Humano extends Jogador{
 
     @Override
     public void escolherComando() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Scanner scanner = new Scanner(System.in);
+        int opcao, pokemon, ataque;
+        System.out.println("Qual a ação deseja tomar?");
+        System.out.println("\t1 - Trocar pokemon.");
+        System.out.println("\t2 - Escolher ataque.");
+        opcao = scanner.nextInt();
+        switch(opcao){
+            case 1:
+                System.out.println("Qual pokemon deseja escolher para trocar?");
+                pokemon = scanner.nextInt();
+                
+                break;
+            case 2: 
+                System.out.println("Qual ateque deseja utilizar:");
+                ataque = scanner.nextInt();
+                if(ataque == 1){
+                    
+                }
+                break;
+        }
+        
     }
     
     
