@@ -10,11 +10,22 @@ package trabpokemon;
  * @author gabriel
  */
 public enum Tipo {
-    NONE("arquivo"),
-    BUG("arq"),
-    DRAGON("arq");
-    
-    // adicionar restante depois
+    NONE("None"),
+    BUG("Bug"),
+    DRAGON("Dragon"),
+    ELETRIC("Eletric"),
+    FIGHTING("Fighting"),
+    FIRE("Fire"),
+    FLYING("Flying"),
+    ICE("Ice"),
+    GHOST("Ghost"),
+    GRASS("Grass"),
+    GROUND("Ground"),
+    NORMAL("Normal"),
+    POISON("Poison"),
+    PSYCHIC("Psychic"),
+    ROCK("Rock"),
+    WATER("Water"); 
     
     private final String tipo;
     

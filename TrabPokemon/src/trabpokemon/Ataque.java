@@ -13,6 +13,7 @@ public abstract class Ataque {
     private int id;
     private String nome;
     private double ppMax, ppAtual, power, accuracy;
+    private Tipo tipo;
     
     public abstract void efeito();
     

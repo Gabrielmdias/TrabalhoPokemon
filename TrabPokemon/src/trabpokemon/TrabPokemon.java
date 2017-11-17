@@ -19,6 +19,8 @@ public class TrabPokemon {
     public static void main(String[] args) {
         Batalha bat1 = new Batalha();
         bat1.inicializarJogadores();
+        Pokemon tpdpospokmeons;
+        
 
     }
     
