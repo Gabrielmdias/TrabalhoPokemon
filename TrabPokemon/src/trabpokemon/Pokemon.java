@@ -23,6 +23,32 @@ public class Pokemon {
     private Status status;
     
     
+
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }
+
+    public Ataque getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(Ataque ataque) {
+        this.ataque = ataque;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    
+    
    
     public double valorAtributo() {    
         return 0;

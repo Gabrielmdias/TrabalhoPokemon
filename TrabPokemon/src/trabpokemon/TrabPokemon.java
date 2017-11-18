@@ -5,7 +5,10 @@
  */
 package trabpokemon;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +21,11 @@ public class TrabPokemon {
      */
     public static void main(String[] args) {
         Batalha bat1 = new Batalha();
+        try {
+            bat1.carregarTabelas();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TrabPokemon.class.getName()).log(Level.SEVERE, null, ex);
+        }
         bat1.inicializarJogadores();
         Pokemon tpdpospokmeons;
         
