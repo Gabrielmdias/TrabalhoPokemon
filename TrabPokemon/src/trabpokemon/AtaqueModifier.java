@@ -11,6 +11,10 @@ package trabpokemon;
  */
 public class AtaqueModifier extends Ataque {
     private int mod, n, chance;
+
+    public AtaqueModifier(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+        super(id, nome, tipo, ppMax, power, accuracy);
+    }
     
     @Override
     public void efeito() {

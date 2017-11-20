@@ -25,18 +25,27 @@ public class Batalha {
     public void carregarTabelas() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("tabelaDeAtaques.txt"))
                 .useDelimiter("\t|\n");
+        String classe, parametros;
         while(scanner.hasNext()){
-            int id = scanner.nextInt();
+            /*int id = scanner.nextInt();
             String nome = scanner.next();
             if(String tipo == scanner.next()){
             
-        }
-            ataques.add(new Ataque(0, nome, tipo, 0, 0, 0) {
+        }*/
+            
+            ataques.add(new Ataque(scanner.nextInt(), 
+                                   scanner.next(), 
+                                   scanner.next(), 
+                                   scanner.nextDouble(), 
+                                   scanner.nextDouble(), 
+                                   scanner.nextDouble()) {
                 @Override
                 public void efeito() {
                     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 }
-            })
+            });
+            classe = scanner.next();
+            parametros = scanner.next();
         }
         
         scanner = new Scanner(new FileReader("tabelaDeEspecies.txt"))
@@ -71,7 +80,7 @@ public class Batalha {
             }
             for (int i = 0; i < qtdePokemon[k]; i++) {
                 Pokemon pokemon = new Pokemon();
-                Especie especie = new Especie(i, nome, i, k, i, i, i, Tipo.FIRE, Tipo.FIRE)
+               //Especie especie = new Especie(i, nome, i, k, i, i, i, Tipo.FIRE, Tipo.FIRE);
                 
                 
                 

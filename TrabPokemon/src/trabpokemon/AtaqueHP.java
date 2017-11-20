@@ -12,6 +12,10 @@ package trabpokemon;
 public class AtaqueHP extends Ataque{
     private int valor, porcentagem;
 
+    public AtaqueHP(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+        super(id, nome, tipo, ppMax, power, accuracy);
+    }
+
     @Override
     public void efeito() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
