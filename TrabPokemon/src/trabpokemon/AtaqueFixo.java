@@ -12,9 +12,12 @@ package trabpokemon;
 public class AtaqueFixo extends Ataque{
     private int val;    
 
-    public AtaqueFixo(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+    public AtaqueFixo(int id, String nome, String tipo, double ppMax, double power, double accuracy, int val) {
         super(id, nome, tipo, ppMax, power, accuracy);
+        this.val = val;
     }
+
+    
 
     @Override
     public void efeito() {

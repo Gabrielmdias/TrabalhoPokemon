@@ -12,14 +12,20 @@ package trabpokemon;
 public class Especie {
     private int id;
     private String nome;
-    private Tipo tipo1, tipo2;
+    private Tipo tipo1 = Tipo.NONE, tipo2 = Tipo.NONE;
     private double baseHp, baseAtk, baseDef, baseSpe, baseSpd;
 
     public Especie(int id, String nome, String tipo1, String tipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
         this.id = id;
         this.nome = nome;
-        this.tipo1 = Tipo.valueOf(tipo1);
-        this.tipo2 = Tipo.valueOf(tipo2);
+        if (!tipo1.isEmpty()){
+            System.out.println(tipo1);
+            this.tipo1 = Tipo.valueOf(tipo1.toUpperCase());
+        }
+        if (!tipo2.isEmpty()){
+            System.out.println(tipo2);
+            this.tipo2 = Tipo.valueOf(tipo2.toUpperCase());
+        }
         this.baseHp = baseHp;
         this.baseAtk = baseAtk;
         this.baseDef = baseDef;
@@ -37,4 +43,42 @@ public class Especie {
         atributos[4] = 2 * baseSpd * L / 100 + 5;
         return atributos;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Tipo getTipo1() {
+        return tipo1;
+    }
+
+    public Tipo getTipo2() {
+        return tipo2;
+    }
+
+    public double getBaseHp() {
+        return baseHp;
+    }
+
+    public double getBaseAtk() {
+        return baseAtk;
+    }
+
+    public double getBaseDef() {
+        return baseDef;
+    }
+
+    public double getBaseSpe() {
+        return baseSpe;
+    }
+
+    public double getBaseSpd() {
+        return baseSpd;
+    }
+    
+    
 }

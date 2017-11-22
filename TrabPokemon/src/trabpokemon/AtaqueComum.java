@@ -9,16 +9,16 @@ package trabpokemon;
  *
  * @author gabriel
  */
-public class AtaqueCharge extends Ataque{
+public class AtaqueComum extends Ataque{
 
-    public AtaqueCharge(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+    public AtaqueComum(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
         super(id, nome, tipo, ppMax, power, accuracy);
     }
-   
 
     @Override
     public void efeito() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+  
 }

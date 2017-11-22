@@ -24,6 +24,10 @@ public abstract class Ataque {
         this.power = power;
         this.accuracy = accuracy;
     }
+
+    public String getNome() {
+        return nome;
+    }
     
     
     

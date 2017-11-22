@@ -13,7 +13,7 @@ public class AtaqueStatus extends Ataque{
     private int status, chance;
 
 
-    public AtaqueStatus(int status, int chance, int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+    public AtaqueStatus(int id, String nome, String tipo, double ppMax, double power, double accuracy, int status, int chance) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.status = status;
         this.chance = chance;

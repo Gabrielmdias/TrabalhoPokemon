@@ -13,7 +13,7 @@ public enum Tipo {
     NONE("None"),
     BUG("Bug"),
     DRAGON("Dragon"),
-    ELETRIC("Eletric"),
+    ELECTRIC("Electric"),
     FIGHTING("Fighting"),
     FIRE("Fire"),
     FLYING("Flying"),
@@ -25,12 +25,14 @@ public enum Tipo {
     POISON("Poison"),
     PSYCHIC("Psychic"),
     ROCK("Rock"),
-    WATER("Water"); 
+    WATER("Water");
     
     private final String tipo;
     
     Tipo(String tipo){
         this.tipo = tipo;
     }
+
+    
     
 }

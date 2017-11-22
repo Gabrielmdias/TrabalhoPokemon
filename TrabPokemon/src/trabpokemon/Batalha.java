@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 /**
  *
  * @author gabriel
@@ -25,42 +27,102 @@ public class Batalha {
     public void carregarTabelas() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("tabelaDeAtaques.txt"))
                 .useDelimiter("\t|\n");
-        String classe, parametros;
+        scanner.nextLine();
+        
         while(scanner.hasNext()){
-            /*int id = scanner.nextInt();
-            String nome = scanner.next();
-            if(String tipo == scanner.next()){
-            
-        }*/
-            
-            ataques.add(new Ataque(scanner.nextInt(), 
-                                   scanner.next(), 
-                                   scanner.next(), 
-                                   scanner.nextDouble(), 
-                                   scanner.nextDouble(), 
-                                   scanner.nextDouble()) {
-                @Override
-                public void efeito() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
-            classe = scanner.next();
-            parametros = scanner.next();
+            int id = Integer.parseInt(scanner.next());
+            String nome = scanner.next(), 
+                   type = scanner.next();
+            double pp = Double.parseDouble(scanner.next()),
+                   power = Double.parseDouble(scanner.next()),
+                   accuracy = Double.parseDouble(scanner.next());
+            String classe = scanner.next();
+            String parametros = scanner.next();
+            Ataque atk;
+            Scanner scannerParametros = new Scanner(parametros).useDelimiter(",|\n");
+            switch(classe){
+                case "hp":
+                    atk = new AtaqueHP( id, 
+                                        nome, 
+                                        type, 
+                                        pp, power, 
+                                        accuracy, 
+                                        scannerParametros.next(), 
+                                        Integer.parseInt(scannerParametros.next()));
+                    
+                    break;
+                case "multihit":
+                    atk = new AtaqueMultihit(   id, 
+                                                nome, 
+                                                type, 
+                                                pp, 
+                                                power, 
+                                                accuracy, 
+                                                Integer.parseInt(scannerParametros.next()), 
+                                                Integer.parseInt(scannerParametros.next()));
+                    break;
+                case "modifier":
+                    atk = new AtaqueModifier(   id,   
+                                                nome, 
+                                                type, 
+                                                pp, 
+                                                power, 
+                                                accuracy,   
+                                                Integer.parseInt(scannerParametros.next()), 
+                                                Integer.parseInt(scannerParametros.next()), 
+                                                Integer.parseInt(scannerParametros.next()));
+                    break;
+                case "fixo":
+                    atk = new AtaqueFixo(   id, 
+                                            nome, 
+                                            type, 
+                                            pp, 
+                                            power, 
+                                            accuracy, 
+                                            Integer.parseInt(scannerParametros.next()));
+                    break;
+                case "status":
+                    atk = new AtaqueStatus( id, 
+                                            nome, 
+                                            type, 
+                                            pp, 
+                                            power, 
+                                            accuracy, 
+                                            Integer.parseInt(scannerParametros.next()), 
+                                            Integer.parseInt(scannerParametros.next()));
+                    break;
+                case "charge":
+                    atk = new AtaqueCharge(id, nome, type, pp, power, accuracy);
+                    break;
+                default:
+                    atk = new AtaqueComum(id, nome, type, pp, power, accuracy);
+                    break;
+            }
+            ataques.add(atk);
         }
+        System.out.println(ataques.size());
+        for (int i = 0; i < 165; i++) {
+            System.out.println(ataques.get(i).getNome());
+        }
+        
+        
+        
         
         scanner = new Scanner(new FileReader("tabelaDeEspecies.txt"))
                 .useDelimiter("\t|\n");
+        scanner.nextLine();
         while(scanner.hasNext()){
-            especies.add(new Especie(scanner.nextInt(), 
+            especies.add(new Especie(Integer.parseInt(scanner.next()), 
                                      scanner.next(), 
                                      scanner.next(), 
                                      scanner.next(), 
-                                     scanner.nextDouble(), 
-                                     scanner.nextDouble(), 
-                                     scanner.nextDouble(),
-                                     scanner.nextDouble(),
-                                     scanner.nextDouble()));
+                                     Double.parseDouble(scanner.next()), 
+                                     Double.parseDouble(scanner.next()), 
+                                     Double.parseDouble(scanner.next()),
+                                     Double.parseDouble(scanner.next()),
+                                     Double.parseDouble(scanner.next())));
         }
+        System.out.println("especie1: " + especies.get(0).getNome());
     }
     
     public void inicializarJogadores() {
