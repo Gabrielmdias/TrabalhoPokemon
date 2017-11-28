@@ -19,11 +19,9 @@ public class Especie {
         this.id = id;
         this.nome = nome;
         if (!tipo1.isEmpty()){
-            System.out.println(tipo1);
             this.tipo1 = Tipo.valueOf(tipo1.toUpperCase());
         }
         if (!tipo2.isEmpty()){
-            System.out.println(tipo2);
             this.tipo2 = Tipo.valueOf(tipo2.toUpperCase());
         }
         this.baseHp = baseHp;

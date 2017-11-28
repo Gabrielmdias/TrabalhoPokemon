@@ -5,6 +5,8 @@
  */
 package trabpokemon;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gabriel
@@ -19,8 +21,14 @@ public class Pokemon {
                 modifierSpd = 0;
     private boolean confusion, finch;
     private Especie especie;
-    private Ataque ataque;
+    private final ArrayList<Ataque> ataque;
     private Status status;
+
+    public Pokemon(Especie especie, int level, ArrayList<Ataque> ataque) {
+        this.level = level;
+        this.especie = especie;
+        this.ataque = ataque;
+    }
     
     
 
@@ -30,14 +38,6 @@ public class Pokemon {
 
     public void setEspecie(Especie especie) {
         this.especie = especie;
-    }
-
-    public Ataque getAtaque() {
-        return ataque;
-    }
-
-    public void setAtaque(Ataque ataque) {
-        this.ataque = ataque;
     }
 
     public Status getStatus() {
