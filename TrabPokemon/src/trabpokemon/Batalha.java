@@ -59,9 +59,9 @@ public class Batalha {
         for (int k = 0; k < 2; k++) {
             jogadorMaquina[k] = scanner.nextInt();
             qtdePokemon[k] = scanner.nextInt();
-            System.out.println("");
-            System.out.println("Tipo jogador" + (k + 1) + ": " + jogadorMaquina[k]);
-            System.out.println("Quantidade Pokemon: " + qtdePokemon[k]);
+            //System.out.println("");
+            //System.out.println("Tipo jogador" + (k + 1) + ": " + jogadorMaquina[k]);
+            //System.out.println("Quantidade Pokemon: " + qtdePokemon[k]);
             if (jogadorMaquina[k] == 0) {
                 jogador[k] = new Maquina();
             } else {
@@ -75,6 +75,7 @@ public class Batalha {
                     int idAtk = scanner.nextInt() - 1;
                     if (idAtk > 0) {
                         tabAtk.get(idAtk);
+                        System.out.println(tabAtk.get(idAtk)[6]);
                         switch (tabAtk.get(idAtk)[6]) {
                             case "hp":
                                 int valor;
@@ -105,6 +106,7 @@ public class Batalha {
                                         Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
                             case "modifier":
+                                System.out.println(" nao entrooou");
                                 atk.add(new AtaqueModifier(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1], 
                                         tabAtk.get(idAtk)[2], 
@@ -112,20 +114,39 @@ public class Batalha {
                                         Double.parseDouble(tabAtk.get(idAtk)[4]),
                                         Double.parseDouble(tabAtk.get(idAtk)[5]),
                                         tabAtk.get(idAtk)[7].split(",")[0], 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1]), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2])));
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim()), 
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2].trim())));
+                                System.out.println("entrooou");
                                 break;
+                                
                             case "fixo":
-
+                                atk.add(new AtaqueFixo(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7])));
                                 break;
                             case "status":
-
+                                atk.add(new AtaqueStatus(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
+                                        tabAtk.get(idAtk)[7].split(",")[0], 
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
                             case "charge":
-
+                                atk.add(new AtaqueCharge(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
+                                        Double.parseDouble(tabAtk.get(idAtk)[5])));
                                 break;
                             default:
-
                                 break;
                         }
                     }
