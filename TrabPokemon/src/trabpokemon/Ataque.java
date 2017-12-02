@@ -18,7 +18,7 @@ public abstract class Ataque {
     public Ataque(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
         this.id = id;
         this.nome = nome;
-        this.tipo = Tipo.valueOf(tipo);
+        this.tipo = Tipo.valueOf(tipo.toUpperCase());
         this.ppMax = ppMax;
         this.ppAtual = ppMax;
         this.power = power;

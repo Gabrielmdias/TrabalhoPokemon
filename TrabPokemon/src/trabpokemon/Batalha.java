@@ -80,12 +80,12 @@ public class Batalha {
                             case "hp":
                                 int valor;
                                 int porcentagem;
-                                if (tabAtk.get(idAtk)[7].split(",")[0].equals("max_hp")) {
+                                if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp")) {
                                     valor = (int) especie.getBaseHp();
                                 } else {
                                     valor = (int) especie.getBaseAtk();
                                 }
-                                porcentagem = Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1]);
+                                porcentagem = Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim());
                                 atk.add(new AtaqueHP(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1],
                                         tabAtk.get(idAtk)[2],
@@ -102,18 +102,19 @@ public class Batalha {
                                         Double.parseDouble(tabAtk.get(idAtk)[3]),
                                         Double.parseDouble(tabAtk.get(idAtk)[4]),
                                         Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0]), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0].trim()), 
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim())));
                                 break;
                             case "modifier":
                                 System.out.println(" nao entrooou");
+                                System.out.println(tabAtk.get(idAtk)[2]);
                                 atk.add(new AtaqueModifier(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1], 
                                         tabAtk.get(idAtk)[2], 
                                         Double.parseDouble(tabAtk.get(idAtk)[3]),
                                         Double.parseDouble(tabAtk.get(idAtk)[4]),
                                         Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        tabAtk.get(idAtk)[7].split(",")[0], 
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(), 
                                         Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim()), 
                                         Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2].trim())));
                                 System.out.println("entrooou");
@@ -135,8 +136,8 @@ public class Batalha {
                                         Double.parseDouble(tabAtk.get(idAtk)[3]),
                                         Double.parseDouble(tabAtk.get(idAtk)[4]),
                                         Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        tabAtk.get(idAtk)[7].split(",")[0], 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(), 
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim())));
                                 break;
                             case "charge":
                                 atk.add(new AtaqueCharge(Integer.parseInt(tabAtk.get(idAtk)[0]),
