@@ -19,16 +19,16 @@ public class TrabPokemon {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Batalha bat1 = new Batalha();
+        
+        Batalha bata1ha = new Batalha();
+        
         try {
-            bat1.carregarTabelas();
+            bata1ha.carregarTabelas();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TrabPokemon.class.getName()).log(Level.SEVERE, null, ex);
         }
-        bat1.inicializarJogadores();
-        Pokemon tpdpospokmeons;
         
+        bata1ha.inicializarJogadores();
 
-    }
-    
+    }    
 }

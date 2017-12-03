@@ -8,7 +8,6 @@ package trabpokemon;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,9 +16,9 @@ import java.util.Scanner;
  */
 public class Batalha {
 
-    private final Jogador[] jogador = new Jogador[2];
-    private List<Especie> especies = new ArrayList<>();
-    private List<String[]> tabAtk = new ArrayList<>();
+    private final ArrayList<Jogador> jogador = new ArrayList<>();
+    private final ArrayList<Especie> especies = new ArrayList<>();
+    private final ArrayList<String[]> tabAtk = new ArrayList<>();
 
     public void carregarTabelas() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("tabelaDeEspecies.txt"))
@@ -36,143 +35,116 @@ public class Batalha {
                     Double.parseDouble(scanner.next()),
                     Double.parseDouble(scanner.next())));
         }
-        //System.out.println("especie1: " + especies.get(0).getNome());
 
         scanner = new Scanner(new FileReader("tabelaDeAtaques.txt"))
                 .useDelimiter("\t|\n");
         scanner.nextLine();
+        
         String[] campo = new String[8];
-        while (scanner.hasNext()) {
-            for (int i = 0; i < 8; i++) {
-                campo[i] = scanner.next();
-            }
+        while (scanner.hasNext()){
+            for (int i = 0; i < 8; i++)
+                campo[i] = scanner.next().replaceAll(" ", "");
             tabAtk.add(campo);
         }
     }
 
     public void inicializarJogadores() {
         Scanner scanner = new Scanner(System.in);
-        int jogadorMaquina[], qtdePokemon[];
-        jogadorMaquina = new int[2];
-        qtdePokemon = new int[2];
 
-        for (int k = 0; k < 2; k++) {
-            jogadorMaquina[k] = scanner.nextInt();
-            qtdePokemon[k] = scanner.nextInt();
-            //System.out.println("");
-            //System.out.println("Tipo jogador" + (k + 1) + ": " + jogadorMaquina[k]);
-            //System.out.println("Quantidade Pokemon: " + qtdePokemon[k]);
-            if (jogadorMaquina[k] == 0) {
-                jogador[k] = new Maquina();
-            } else {
-                jogador[k] = new Humano();
-            }
-            for (int i = 0; i < qtdePokemon[k]; i++) {
-                Especie especie = especies.get(scanner.nextInt() - 1);
-                int lvl = scanner.nextInt();
+        for (int countJogador = 0; countJogador < 2; countJogador++) {
+            Jogador j;
+            if (scanner.nextInt() > 0)
+                j = new Humano();
+            else
+                j = new Maquina();
+            jogador.add(j);
+
+            for (int countPokemon = 0; countPokemon < scanner.nextInt(); countPokemon++) {                
+                Especie especie = especies.get(scanner.nextInt());
                 ArrayList<Ataque> atk = new ArrayList<>();
-                for (int j = 0; j < 4; j++) {
-                    int idAtk = scanner.nextInt() - 1;
-                    if (idAtk > 0) {
-                        tabAtk.get(idAtk);
-                        System.out.println(tabAtk.get(idAtk)[6]);
+                int level = scanner.nextInt();                
+                
+                for (int at = 0; at < 4; at++) {
+                    int idAtk;
+                    if ((idAtk = scanner.nextInt()) > 0);
                         switch (tabAtk.get(idAtk)[6]) {
+                            
                             case "hp":
                                 int valor;
-                                int porcentagem;
-                                if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp")) {
+                                if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp"))
                                     valor = (int) especie.getBaseHp();
-                                } else {
+                                else
                                     valor = (int) especie.getBaseAtk();
-                                }
-                                porcentagem = Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim());
                                 atk.add(new AtaqueHP(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1],
                                         tabAtk.get(idAtk)[2],
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
                                         valor,
-                                        porcentagem));
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
+                                
                             case "multihit":
-                                atk.add(new AtaqueMultihit(Integer.parseInt(tabAtk.get(idAtk)[0]), 
-                                        tabAtk.get(idAtk)[1], 
-                                        tabAtk.get(idAtk)[2], 
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0].trim()), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim())));
+                                atk.add(new AtaqueMultihit(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0]),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
+                                
                             case "modifier":
-                                System.out.println(" nao entrooou");
-                                System.out.println(tabAtk.get(idAtk)[2]);
                                 atk.add(new AtaqueModifier(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                        tabAtk.get(idAtk)[1], 
-                                        tabAtk.get(idAtk)[2], 
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        tabAtk.get(idAtk)[7].split(",")[0].trim(), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim()), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2].trim())));
-                                System.out.println("entrooou");
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1]),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2])));
                                 break;
                                 
                             case "fixo":
                                 atk.add(new AtaqueFixo(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1],
                                         tabAtk.get(idAtk)[2],
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
                                         Integer.parseInt(tabAtk.get(idAtk)[7])));
                                 break;
+                                
                             case "status":
                                 atk.add(new AtaqueStatus(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1],
                                         tabAtk.get(idAtk)[2],
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5]),
-                                        tabAtk.get(idAtk)[7].split(",")[0].trim(), 
-                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1].trim())));
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
+                                
                             case "charge":
                                 atk.add(new AtaqueCharge(Integer.parseInt(tabAtk.get(idAtk)[0]),
                                         tabAtk.get(idAtk)[1],
                                         tabAtk.get(idAtk)[2],
-                                        Double.parseDouble(tabAtk.get(idAtk)[3]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[4]),
-                                        Double.parseDouble(tabAtk.get(idAtk)[5])));
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5]));
                                 break;
+                                
                             default:
                                 break;
                         }
-                    }
-                    Pokemon pokemon = new Pokemon(especie, lvl, atk);
+                    }                    
+                    j.addPokemon(new Pokemon(especie, level, atk));
                 }
-
             }
-
-            /* O primeiro parâmetro é um número de 1 a 151 e representa a espécie do
-                pokémon descrito;
-                 O segundo parâmetro é um número de 1 a 100 e representa o Lvl (Nível)
-                do pokémon descrito;
-                 Os próximos quatro parâmetros são números de 0 a 165 e representam
-                os quatro ataques do pokémon descrito;
-                    Note que, mesmo que um pokémon possa ter menos de 4
-                ataques, sempre são passados 4 ids por parâmetro;
-                    Sendo assim, quando o pokémon não possuir todos os 4 ataques,
-                os espaços vazios são representados pelo número 0; */
         }
-    }
-    
-    public void executarTurno() {
-
-    }
 
 }
-
-

@@ -14,14 +14,23 @@ import java.util.List;
  */
 public abstract class Jogador {
     
-    private final List<Pokemon> pokemons;
+    private List<Pokemon> pokemons = new ArrayList<>();
 
     public Jogador() {
-        this.pokemons = new ArrayList<>(6);
     }
     
     
-    public abstract void escolherComando();
+    public void setPokemons(List<Pokemon> pokemons) {
+        this.pokemons = pokemons;
+    }
+    
+    public void addPokemon(Pokemon pokemon) {
+        this.pokemons.add(pokemon);
+    }
+    
+    public void escolherComando() {
+        
+    }
     
     public void trocarPokemon() {
         

@@ -13,7 +13,7 @@ public class AtaqueModifier extends Ataque {
     private String mod;
     private int n, chance;
 
-    public AtaqueModifier(int id, String nome, String tipo, double ppMax, double power, double accuracy, String mod, int n, int chance) {
+    public AtaqueModifier(int id, String nome, String tipo, String ppMax, String power, String accuracy, String mod, int n, int chance) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.mod = mod;
         this.n = n;

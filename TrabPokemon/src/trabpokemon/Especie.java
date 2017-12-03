@@ -18,12 +18,10 @@ public class Especie {
     public Especie(int id, String nome, String tipo1, String tipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
         this.id = id;
         this.nome = nome;
-        if (!tipo1.isEmpty()){
+        if (!tipo1.isEmpty())
             this.tipo1 = Tipo.valueOf(tipo1.toUpperCase());
-        }
-        if (!tipo2.isEmpty()){
+        if (!tipo2.isEmpty())
             this.tipo2 = Tipo.valueOf(tipo2.toUpperCase());
-        }
         this.baseHp = baseHp;
         this.baseAtk = baseAtk;
         this.baseDef = baseDef;
@@ -32,14 +30,13 @@ public class Especie {
     }
 
     
-    public double[] calcularAtributo(int L) {
-        double atributos[] = new double[5];
-        atributos[0] = (2 * baseHp * L) / (100 + L + 10);
-        atributos[1] = 2 * baseAtk * L / 100 + 5;
-        atributos[2] = 2 * baseDef * L / 100 + 5;
-        atributos[3] = 2 * baseSpe * L / 100 + 5;
-        atributos[4] = 2 * baseSpd * L / 100 + 5;
-        return atributos;
+    public double[] calcularAtributo(int l) {
+        return new double[]{
+            (2 * baseHp * l) / (100 + l + 10),
+            2 * baseAtk * l / 100 + 5,
+            2 * baseDef * l / 100 + 5,
+            2 * baseSpe * l / 100 + 5,
+            2 * baseSpd * l / 100 + 5};
     }
 
     public int getId() {

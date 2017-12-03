@@ -14,6 +14,7 @@ public class Maquina extends Jogador{
     public Maquina() {
     }
     
+    
     @Override
     public void escolherComando() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

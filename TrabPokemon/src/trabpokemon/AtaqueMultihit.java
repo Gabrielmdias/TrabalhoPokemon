@@ -12,7 +12,7 @@ package trabpokemon;
 public class AtaqueMultihit extends Ataque{
     private int min, max;
 
-    public AtaqueMultihit(int id, String nome, String tipo, double ppMax, double power, double accuracy, int min, int max) {
+    public AtaqueMultihit(int id, String nome, String tipo, String ppMax, String power, String accuracy, int min, int max) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.min = min;
         this.max = max;

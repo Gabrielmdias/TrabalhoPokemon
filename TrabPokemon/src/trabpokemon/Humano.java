@@ -15,31 +15,29 @@ public class Humano extends Jogador{
 
     public Humano() {
     }
+    
 
     @Override
     public void escolherComando() {
         Scanner scanner = new Scanner(System.in);
-        int opcao, pokemon, ataque;
-        System.out.println("Qual a ação deseja tomar?");
-        System.out.println("\t1 - Trocar pokemon.");
-        System.out.println("\t2 - Escolher ataque.");
-        opcao = scanner.nextInt();
-        switch(opcao){
+        
+        System.out.println("Qual é a ação desejada?");
+        System.out.println("\t1 - Trocar Pokémon;");
+        System.out.println("\t2 - Escolher ataque;");
+        switch(scanner.nextInt()){
             case 1:
-                System.out.println("Qual pokemon deseja escolher para trocar?");
-                pokemon = scanner.nextInt();
-                
+                System.out.println("Selecione um Pokemón para troca:");
+                scanner.nextInt();
                 break;
+                
             case 2: 
-                System.out.println("Qual ateque deseja utilizar:");
-                ataque = scanner.nextInt();
-                if(ataque == 1){
-                    
-                }
+                System.out.println("Selecione um ataque:");
+                scanner.nextInt();
+                break;
+                
+            default:
                 break;
         }
-        
     }
-    
     
 }

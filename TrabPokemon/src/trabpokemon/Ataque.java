@@ -15,21 +15,20 @@ public abstract class Ataque {
     private Tipo tipo;
     private double ppMax, ppAtual, power, accuracy;
 
-    public Ataque(int id, String nome, String tipo, double ppMax, double power, double accuracy) {
+    public Ataque(int id, String nome, String tipo, String ppMax, String power, String accuracy) {
         this.id = id;
         this.nome = nome;
         this.tipo = Tipo.valueOf(tipo.toUpperCase());
-        this.ppMax = ppMax;
-        this.ppAtual = ppMax;
-        this.power = power;
-        this.accuracy = accuracy;
+        this.ppMax = Double.valueOf(ppMax);
+        this.ppAtual = Double.valueOf(ppMax);
+        this.power = Double.valueOf(power);
+        this.accuracy = Double.valueOf(accuracy);
     }
 
+    
     public String getNome() {
         return nome;
-    }
-    
-    
+    }    
     
     public abstract void efeito();
     

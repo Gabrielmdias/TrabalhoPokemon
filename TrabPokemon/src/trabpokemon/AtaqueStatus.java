@@ -14,7 +14,7 @@ public class AtaqueStatus extends Ataque{
     private String status;
 
 
-    public AtaqueStatus(int id, String nome, String tipo, double ppMax, double power, double accuracy, String status, int chance) {
+    public AtaqueStatus(int id, String nome, String tipo, String ppMax, String power, String accuracy, String status, int chance) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.status = status;
         this.chance = chance;
