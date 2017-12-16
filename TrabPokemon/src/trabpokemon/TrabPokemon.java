@@ -20,15 +20,16 @@ public class TrabPokemon {
      */
     public static void main(String[] args) {
         
-        Batalha bata1ha = new Batalha();
+        Batalha batalha = new Batalha();
         
         try {
-            bata1ha.carregarTabelas();
+            batalha.carregarTabelas();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TrabPokemon.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        bata1ha.inicializarJogadores();
+        batalha.inicializarJogadores();
+        batalha.executarTurno();
 
     }    
 }

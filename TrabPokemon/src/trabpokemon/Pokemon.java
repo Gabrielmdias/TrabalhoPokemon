@@ -11,10 +11,10 @@ import java.util.ArrayList;
  *
  * @author gabriel
  */
-public class Pokemon {
+public class Pokemon implements Comparable<Pokemon>{
     private int level;
     private Especie especie;
-    private Status status;
+    private Status status = Status.OK;
     private final ArrayList<Ataque> ataque;
     private double hpAtual, hpMax, atk, def, spe, spd;
     private int modifierAccuracy, 
@@ -28,6 +28,14 @@ public class Pokemon {
         this.level = level;
         this.especie = especie;
         this.ataque = ataque;
+    }
+
+    public ArrayList<Ataque> getAtaque() {
+        return ataque;
+    }
+
+    public double getSpd() {
+        return spd;
     }
     
 
@@ -49,6 +57,13 @@ public class Pokemon {
    
     public double valorAtributo() {    
         return 0;
+    }
+
+    @Override
+    public int compareTo(Pokemon o) {
+        if (this.status == Status.FAINTED)
+            return 2;
+        return 1;
     }
     
 }

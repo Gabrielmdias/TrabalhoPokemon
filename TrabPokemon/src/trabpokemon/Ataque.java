@@ -25,18 +25,23 @@ public abstract class Ataque {
         this.accuracy = Double.valueOf(accuracy);
     }
 
+    public int getId() {
+        return id;
+    }    
     
     public String getNome() {
         return nome;
     }    
     
-    public abstract void efeito();
+    public abstract void efeito(Pokemon p);
     
     public boolean calculoCritico() {
-        return true;
+        // sspeed do atacante / 512
+        return false;
     }
     
     public boolean calculoAcerto() {
+        //this.accuracy * (modifier accuracy do oponente / modifier evasion do oponente)
         return true;
     }
     

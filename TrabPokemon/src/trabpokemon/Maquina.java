@@ -5,6 +5,8 @@
  */
 package trabpokemon;
 
+import java.util.Random;
+
 /**
  *
  * @author gabriel
@@ -16,8 +18,11 @@ public class Maquina extends Jogador{
     
     
     @Override
-    public void escolherComando() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int[] escolherComando() {
+        Random r = new Random();
+        int tamanho = getPokemons().get(0).getAtaque().size();        
+        getPokemons().get(0).getAtaque().get(r.nextInt(tamanho));
+        return null;
     }
     
 }

@@ -8,6 +8,7 @@ package trabpokemon;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -58,16 +59,15 @@ public class Batalha {
             else
                 j = new Maquina();
             jogador.add(j);
-
-            for (int countPokemon = 0; countPokemon < scanner.nextInt(); countPokemon++) {                
+            int qtde = scanner.nextInt();
+            for (int countPokemon = 0; countPokemon < qtde; countPokemon++) {    
                 Especie especie = especies.get(scanner.nextInt());
                 ArrayList<Ataque> atk = new ArrayList<>();
                 int level = scanner.nextInt();                
-                
                 for (int at = 0; at < 4; at++) {
                     int idAtk;
                     if ((idAtk = scanner.nextInt()) > 0);
-                        switch (tabAtk.get(idAtk)[6]) {
+                        switch (tabAtk.get(idAtk)[6]) { // [6] para pegar a classe  
                             
                             case "hp":
                                 int valor;
@@ -146,5 +146,43 @@ public class Batalha {
                 }
             }
         }
+    
+    public void executarTurno(){
+        Collections.sort(jogador.get(0).getPokemons());
+        Collections.sort(jogador.get(1).getPokemons());
+        
+        while(jogador.get(0).getPokemons().get(0).getStatus() != Status.FAINTED && 
+                jogador.get(1).getPokemons().get(0).getStatus() != Status.FAINTED ){
+            
+            int c = 0;
+            ArrayList<int[]> comando = new ArrayList<>();
+            for (Jogador j : jogador) {
+                comando.set(c++, j.escolherComando());
+            }
+            
+            if(comando.get(0)[0] == comando.get(1)[0]){
+                if(jogador.get(0).getPokemons().get(0).getSpd() < jogador.get(1).getPokemons().get(0).getSpd()){
+                    Collections.swap(jogador, 0, 1);
+                    Collections.swap(comando, 0, 1);
+                }
+            } else if (comando.get(1)[0] == 1){
+                Collections.swap(jogador, 0, 1);
+                Collections.swap(comando, 0, 1);
+            }
+        
+            for(int i = 0; i < 0; i++){
+                switch(comando.get(i)[0]){
+                    case 1:
+                        jogador.get(i).trocarPokemon(comando.get(i)[1]);
+                        break;
+                    case 2:
+                        jogador.get(i).usarAtaque(comando.get(i)[1]);
+                }
+            }
+        
+            //comportamneto dos status
+        }
+        
+    }
 
 }

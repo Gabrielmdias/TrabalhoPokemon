@@ -16,7 +16,7 @@ public class AtaqueCharge extends Ataque{
     }
 
     @Override
-    public void efeito() {
+    public void efeito(Pokemon p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

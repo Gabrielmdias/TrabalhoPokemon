@@ -19,11 +19,9 @@ public class AtaqueModifier extends Ataque {
         this.n = n;
         this.chance = chance;
     }
-
-
     
     @Override
-    public void efeito() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void efeito(Pokemon p) {
+        
     }
 }

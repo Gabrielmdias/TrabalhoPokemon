@@ -6,7 +6,9 @@
 package trabpokemon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -18,6 +20,11 @@ public abstract class Jogador {
 
     public Jogador() {
     }
+
+    public List<Pokemon> getPokemons() {
+        return pokemons;
+    }
+    
     
     
     public void setPokemons(List<Pokemon> pokemons) {
@@ -28,15 +35,13 @@ public abstract class Jogador {
         this.pokemons.add(pokemon);
     }
     
-    public void escolherComando() {
-        
+    public abstract int[] escolherComando();
+    
+    public void trocarPokemon(int pokemonPrincipal) {
+        Collections.swap(this.getPokemons(), 0, pokemonPrincipal);
     }
     
-    public void trocarPokemon() {
-        
-    }
-    
-    public void usarAtaque() {
-        
+    public void usarAtaque(int ataque) {
+        this.getPokemons().get(0).getAtaque().get(ataque).efeito(this.pokemons.get(0));
     }
 }
