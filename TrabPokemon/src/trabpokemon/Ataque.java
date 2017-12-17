@@ -35,13 +35,18 @@ public abstract class Ataque {
     
     public abstract void efeito(Pokemon p);
     
-    public boolean calculoCritico() {
+    public boolean calculoCritico(Pokemon p) {
         // sspeed do atacante / 512
-        return false;
+        double chanceCritico;
+        chanceCritico = p.getSpd()/512;
+        if(Math.random() > chanceCritico)
+            return false;
+        else return true;
     }
     
     public boolean calculoAcerto() {
         //this.accuracy * (modifier accuracy do oponente / modifier evasion do oponente)
+        
         return true;
     }
     

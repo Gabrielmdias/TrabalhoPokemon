@@ -22,12 +22,24 @@ public class Pokemon implements Comparable<Pokemon>{
                 modifierAtk, 
                 modifierSpe, 
                 modifierSpd;
-    private boolean confusion, finch;
+    private boolean confusion = false, finch = false;
+    Batalha b;
 
     public Pokemon(Especie especie, int level, ArrayList<Ataque> ataque) {
         this.level = level;
         this.especie = especie;
         this.ataque = ataque;
+        this.modifierAccuracy = 0;
+        this.modifierAtk = 0;
+        this.modifierEvasion = 0;
+        this.modifierSpd = 0;
+        this.modifierSpe = 0;
+        this.hpMax = especie.calcularAtributo(level)[0];
+        this.hpAtual = this.hpMax;
+        this.atk = especie.calcularAtributo(level)[1];
+        this.def = especie.calcularAtributo(level)[2];
+        this.spe = especie.calcularAtributo(level)[3];
+        this.spd = especie.calcularAtributo(level)[4];
     }
 
     public ArrayList<Ataque> getAtaque() {
@@ -55,15 +67,22 @@ public class Pokemon implements Comparable<Pokemon>{
         this.status = status;
     }
    
-    public double valorAtributo() {    
+    public double valorAtributo(Pokemon p) {    
+        int esp = p.getEspecie().getId();
+        double baseAtk = b.getEspecies().get(esp).getBaseAtk();
         return 0;
     }
 
     @Override
     public int compareTo(Pokemon o) {
-        if (this.status == Status.FAINTED)
+        if (this.status == Status.OK)
+            return 1;
+        if (this.status == Status.OK)
             return 2;
-        return 1;
+        if (this.status == Status.OK)
+            return 1;    
+                
+        return -1;
     }
     
 }

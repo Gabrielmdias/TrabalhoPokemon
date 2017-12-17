@@ -21,6 +21,19 @@ public class Batalha {
     private final ArrayList<Especie> especies = new ArrayList<>();
     private final ArrayList<String[]> tabAtk = new ArrayList<>();
 
+    public ArrayList<Jogador> getJogador() {
+        return jogador;
+    }
+
+    public ArrayList<Especie> getEspecies() {
+        return especies;
+    }
+
+    public ArrayList<String[]> getTabAtk() {
+        return tabAtk;
+    }
+    
+
     public void carregarTabelas() throws FileNotFoundException {
         Scanner scanner = new Scanner(new FileReader("tabelaDeEspecies.txt"))
                 .useDelimiter("\t|\n");
@@ -170,13 +183,14 @@ public class Batalha {
                 Collections.swap(comando, 0, 1);
             }
         
-            for(int i = 0; i < 0; i++){
+            for(int i = 0; i < 0; i++){//decidir qual jogador jogar primeiro
                 switch(comando.get(i)[0]){
                     case 1:
                         jogador.get(i).trocarPokemon(comando.get(i)[1]);
                         break;
                     case 2:
                         jogador.get(i).usarAtaque(comando.get(i)[1]);
+                        break;
                 }
             }
         
