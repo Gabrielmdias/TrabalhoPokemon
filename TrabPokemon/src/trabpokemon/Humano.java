@@ -20,6 +20,7 @@ public class Humano extends Jogador{
     @Override
     public int[] escolherComando() {
         Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Quer 1-trocar de pokemon ou 2-atacar ?");
         int op1 = scanner.nextInt(),
             op2 = 0,

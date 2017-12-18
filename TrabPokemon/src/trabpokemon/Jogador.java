@@ -23,9 +23,7 @@ public abstract class Jogador {
 
     public List<Pokemon> getPokemons() {
         return pokemons;
-    }
-    
-    
+    }    
     
     public void setPokemons(List<Pokemon> pokemons) {
         this.pokemons = pokemons;
