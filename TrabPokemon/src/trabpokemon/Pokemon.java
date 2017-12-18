@@ -71,8 +71,7 @@ public class Pokemon implements Comparable<Pokemon>{
     public void setModifierEvasion(int modifierEvasion) {
         this.modifierEvasion = modifierEvasion;
     }
-    
-    
+
 
     public double getAtk() {
         return atk;
@@ -109,9 +108,31 @@ public class Pokemon implements Comparable<Pokemon>{
     public int getModifierSpd() {
         return modifierSpd;
     }
-    
-    
 
+    public void setConfusion(boolean confusion) {
+        this.confusion = confusion;
+    }
+
+    public void setFinch(boolean finch) {
+        this.finch = finch;
+    }
+
+    public void setModifierAtk(int modifierAtk) {
+        this.modifierAtk = modifierAtk;
+    }
+
+    public void setModifierDef(int modifierDef) {
+        this.modifierDef = modifierDef;
+    }
+
+    public void setModifierSpe(int modifierSpe) {
+        this.modifierSpe = modifierSpe;
+    }
+
+    public void setModifierSpd(int modifierSpd) {
+        this.modifierSpd = modifierSpd;
+    }
+    
     
     
     public Especie getEspecie() {
@@ -128,6 +149,10 @@ public class Pokemon implements Comparable<Pokemon>{
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = Status.valueOf(status);
     }
    
     public double[] valorAtributo(Pokemon p) {    

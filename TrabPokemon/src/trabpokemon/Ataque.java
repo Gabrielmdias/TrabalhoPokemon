@@ -29,7 +29,15 @@ public abstract class Ataque {
 
     public int getId() {
         return id;
-    }    
+    }
+
+    public void setPpAtual(double ppAtual) {
+        this.ppAtual = ppAtual;
+    }
+
+    public double getPpAtual() {
+        return ppAtual;
+    }
     
     public String getNome() {
         return nome;
@@ -37,10 +45,12 @@ public abstract class Ataque {
     
     public void efeito(Pokemon usuario, Pokemon oponente){
         oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
+        System.out.println("Vida pokemon jogador 1 :"+ usuario.getHpAtual());
+        System.out.println("Vida pokemon jogador 2 :"+ oponente.getHpAtual());
     }
     
     public boolean calculoCritico(Pokemon p) {
-        // sspeed do atacante / 512
+        // speed do atacante / 512
         double chanceCritico;
         chanceCritico = p.getSpd()/512;
         if(Math.random() > chanceCritico)
@@ -73,10 +83,10 @@ public abstract class Ataque {
         if(usuario.getStatus() == Status.BURN)
             A /= 2;
         
-        if(A < 0) A = 0.0;
-        if(A > 255) A = 255.0;
-        if(D < 0) D = 0.0;
-        if(D > 255) D = 255.0;
+        if(A < 0) A = 0;
+        if(A > 255) A = 255;
+        if(D < 0) D = 0;
+        if(D > 255) D = 255;
         
         dano = (L * A * P / D /50) + 2;
         if (this.tipo == usuario.getEspecie().getTipo1() ||
@@ -120,9 +130,9 @@ public abstract class Ataque {
             }
             dano *= multTipos[i][k];
         }
-        Random Rand = new Random();
-        int R = Rand.nextInt(39)+217;
-        dano = (dano * R)/255;
+        Random rand = new Random();
+        int r = rand.nextInt(39)+217;
+        dano = (dano * r)/255;
         return dano;
     }
 }

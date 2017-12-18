@@ -75,86 +75,87 @@ public class Batalha {
             jogador.add(j);
             int qtde = scanner.nextInt();
             for (int countPokemon = 0; countPokemon < qtde; countPokemon++) {
-                Especie especie = especies.get(scanner.nextInt());
+                Especie especie = especies.get(scanner.nextInt()-1);
                 ArrayList<Ataque> atk = new ArrayList<>();
                 int level = scanner.nextInt();
                 for (int at = 0; at < 4; at++) {
                     int idAtk;
-                    if ((idAtk = scanner.nextInt()) > 0);
-                    switch (tabAtk.get(idAtk)[6]) { // [6] para pegar a classe  
+                    if ((idAtk = scanner.nextInt()) > 0){
+                        switch (tabAtk.get(idAtk)[6]) { // [6] para pegar a classe  
 
-                        case "hp":
-                            int valor;
-                            if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp")) {
-                                valor = (int) especie.getBaseHp();
-                            } else {
-                                valor = (int) especie.getBaseAtk();
-                            }
-                            atk.add(new AtaqueHP(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5],
-                                    valor,
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
-                            break;
+                            case "hp":
+                                int valor;
+                                if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp")) {
+                                    valor = (int) especie.getBaseHp();
+                                } else {
+                                    valor = (int) especie.getBaseAtk();
+                                }
+                                atk.add(new AtaqueHP(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        valor,
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
+                                break;
 
-                        case "multihit":
-                            atk.add(new AtaqueMultihit(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5],
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0]),
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
-                            break;
+                            case "multihit":
+                                atk.add(new AtaqueMultihit(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[0]),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
+                                break;
 
-                        case "modifier":
-                            atk.add(new AtaqueModifier(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5],
-                                    tabAtk.get(idAtk)[7].split(",")[0].trim(),
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1]),
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2])));
-                            break;
+                            case "modifier":
+                                atk.add(new AtaqueModifier(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1]),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[2])));
+                                break;
 
-                        case "fixo":
-                            atk.add(new AtaqueFixo(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5],
-                                    Integer.parseInt(tabAtk.get(idAtk)[7])));
-                            break;
+                            case "fixo":
+                                atk.add(new AtaqueFixo(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        Integer.parseInt(tabAtk.get(idAtk)[7])));
+                                break;
 
-                        case "status":
-                            atk.add(new AtaqueStatus(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5],
-                                    tabAtk.get(idAtk)[7].split(",")[0].trim(),
-                                    Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
-                            break;
+                            case "status":
+                                atk.add(new AtaqueStatus(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5],
+                                        tabAtk.get(idAtk)[7].split(",")[0].trim(),
+                                        Integer.parseInt(tabAtk.get(idAtk)[7].split(",")[1])));
+                                break;
 
-                        case "charge":
-                            atk.add(new AtaqueCharge(Integer.parseInt(tabAtk.get(idAtk)[0]),
-                                    tabAtk.get(idAtk)[1],
-                                    tabAtk.get(idAtk)[2],
-                                    tabAtk.get(idAtk)[3],
-                                    tabAtk.get(idAtk)[4],
-                                    tabAtk.get(idAtk)[5]));
-                            break;
+                            case "charge":
+                                atk.add(new AtaqueCharge(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5]));
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
                 }
                 j.addPokemon(new Pokemon(especie, level, atk));
@@ -169,10 +170,9 @@ public class Batalha {
         if (jogador.get(0).getPokemons().get(0).getStatus() != Status.FAINTED
                 && jogador.get(1).getPokemons().get(0).getStatus() != Status.FAINTED) {
 
-            int c = 0;
             ArrayList<int[]> comando = new ArrayList<>();
             for (Jogador j : jogador) {
-                comando.set(c++, j.escolherComando());
+                comando.add(j.escolherComando());
             }
 
             if (comando.get(0)[0] == 1) { // se comando do jogador 0 for trocar pokemon
@@ -185,15 +185,15 @@ public class Batalha {
             if (jogador.get(0).getPokemons().get(0).getSpd() > jogador.get(1).getPokemons().get(0).getSpd()) { //Ataque
                 // pokemon do jogador 0 mais rapido primeiro
                 if(comando.get(0)[0] == 2) 
-                    jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(1).getPokemons().get(0));
+                    jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(0).getPokemons().get(0), jogador.get(1).getPokemons().get(0));
                 if(comando.get(1)[0] == 2)
-                    jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0));
+                    jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0), jogador.get(0).getPokemons().get(0));
             } else {
                 //pokemon do jogador 1 mais rapido primeiro
                 if(comando.get(1)[0] == 2)
-                    jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0));
+                    jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0), jogador.get(0).getPokemons().get(0));
                 if(comando.get(0)[0] == 2) 
-                    jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(1).getPokemons().get(0));
+                    jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(0).getPokemons().get(0), jogador.get(1).getPokemons().get(0));
             }
             
             //comportamneto dos status

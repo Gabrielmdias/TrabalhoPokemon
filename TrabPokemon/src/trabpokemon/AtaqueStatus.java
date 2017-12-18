@@ -9,19 +9,31 @@ package trabpokemon;
  *
  * @author gabriel
  */
-public class AtaqueStatus extends Ataque{
+public class AtaqueStatus extends Ataque {
+
     private int chance;
     private String status;
-
 
     public AtaqueStatus(int id, String nome, String tipo, String ppMax, String power, String accuracy, String status, int chance) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.status = status;
         this.chance = chance;
     }
-    
-    
-    public void efeito(Pokemon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public void efeito(Pokemon usuario, Pokemon oponente) {
+
+        oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
+
+        if (this.chance > Math.random() * 100) {
+            if ("Confusion".equals(this.status)) {
+                oponente.setConfusion(true);
+            } else if ("Flinch".equals(this.status)) {
+                oponente.setFinch(true);
+            } else {
+                oponente.setStatus(this.status);
+            }
+        }
+        
+        this.setPpAtual(this.getPpAtual() - 1);
     }
 }

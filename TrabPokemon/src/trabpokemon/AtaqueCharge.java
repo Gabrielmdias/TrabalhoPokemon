@@ -16,7 +16,8 @@ public class AtaqueCharge extends Ataque{
     }
 
     public void efeito(Pokemon p) {
-        
+        System.out.println("Ataque Charge");
+        this.setPpAtual(this.getPpAtual() - 1);
     }
 
 }

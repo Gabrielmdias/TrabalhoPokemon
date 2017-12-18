@@ -24,6 +24,6 @@ public class AtaqueHP extends Ataque{
         oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
         
         usuario.setHpAtual(usuario.getHpAtual() + (this.valor * this.porcentagem));
-        
+        this.setPpAtual(this.getPpAtual() - 1);
     }
 }
