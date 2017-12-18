@@ -11,9 +11,9 @@ package trabpokemon;
  */
 public class AtaqueHP extends Ataque{
     private int valor;
-    private int porcentagem;
+    private double porcentagem;
 
-    public AtaqueHP(int id, String nome, String tipo, String ppMax, String power, String accuracy, int valor, int porcentagem) {
+    public AtaqueHP(int id, String nome, String tipo, String ppMax, String power, String accuracy, int valor, double porcentagem) {
         super(id, nome, tipo, ppMax, power, accuracy);
         this.valor = valor;
         this.porcentagem = porcentagem;

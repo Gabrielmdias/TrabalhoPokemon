@@ -97,7 +97,7 @@ public class Batalha {
                                         tabAtk.get(idAtk)[4],
                                         tabAtk.get(idAtk)[5],
                                         valor, 
-                                        (int) Double.parseDouble(tabAtk.get(idAtk)[7].split(",")[1])));
+                                        Double.parseDouble(tabAtk.get(idAtk)[7].split(",")[1])));
                                 break;
 
                             case "multihit":
@@ -207,10 +207,12 @@ public class Batalha {
             if (jogador.get(0).getPokemons().get(0).getHpAtual() <= 0) {
                 System.out.println("Jogador 2 ganhaou");
                 jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
+                System.exit(0);
             }
             if (jogador.get(1).getPokemons().get(0).getHpAtual() <= 0) {
                 System.out.println("Jogador 1 ganhaou");
                 jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
+                System.exit(0);
             }
         }
 
