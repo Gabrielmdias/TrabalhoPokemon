@@ -154,6 +154,23 @@ public class Pokemon implements Comparable<Pokemon>{
     public void setStatus(String status) {
         this.status = Status.valueOf(status);
     }
+    
+    public int modifier(int modifier){
+        if(modifier == -6) return 33;
+        if(modifier == -5) return 37;
+        if(modifier == -4) return 43;
+        if(modifier == -3) return 50;
+        if(modifier == -2) return 60;
+        if(modifier == -1) return 75;
+        if(modifier == -0) return 100;
+        if(modifier == 1) return 133;
+        if(modifier == 2) return 166;
+        if(modifier == 3) return 200;
+        if(modifier == 4) return 233;
+        if(modifier == 5) return 266;
+        if(modifier == 6) return 300;
+        return 0;
+    }
    
     public double[] valorAtributo(Pokemon p) {    
         //int esp = p.getEspecie().getId();
@@ -168,7 +185,14 @@ public class Pokemon implements Comparable<Pokemon>{
 
     @Override
     public int compareTo(Pokemon o) {
-        return this.status.ordinal();
+        if(this.status == Status.OK) return 1;
+        if(this.status == Status.BURN) return 2;
+        if(this.status == Status.FROZEN) return 3;
+        if(this.status == Status.PARALYSIS) return 4;
+        if(this.status == Status.POISON) return 5;
+        if(this.status == Status.SLEEP) return 6;
+        if(this.status == Status.FAINTED) return 7;
+        return 0;
     }
     
 }

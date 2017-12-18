@@ -23,7 +23,7 @@ public class AtaqueMultihit extends Ataque{
 
     
     public void efeito(Pokemon usuario, Pokemon oponente) {
-
+        this.setPpAtual(this.getPpAtual() - 1);
         calculoAcerto(usuario, oponente);
         calculoCritico(usuario);
    
@@ -31,6 +31,6 @@ public class AtaqueMultihit extends Ataque{
         int vezes = rand.nextInt(this.max+1)+this.min;
         
         oponente.setHpAtual(oponente.getHpAtual() - (vezes * calculoDano(usuario, oponente)));
-        this.setPpAtual(this.getPpAtual() - 1);
+        
     }
 }

@@ -32,7 +32,7 @@ public class TrabPokemon {
         
         do {
             batalha.executarTurno();   
-        } while(true);
+        } while(batalha.bataraAcabou());
         
 
     }    

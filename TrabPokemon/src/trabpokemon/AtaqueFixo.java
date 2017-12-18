@@ -19,10 +19,11 @@ public class AtaqueFixo extends Ataque{
     
     
     public void efeito(Pokemon usuario, Pokemon oponente) {
+        this.setPpAtual(this.getPpAtual() - 1);
         if(this.val == usuario.getLevel())
             oponente.setHpAtual(oponente.getHpAtual() - usuario.getLevel());
         else 
             oponente.setHpAtual(oponente.getHpAtual() - this.val);
-        this.setPpAtual(this.getPpAtual() - 1);
+        
     }
 }

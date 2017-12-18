@@ -28,21 +28,6 @@ public class AtaqueModifier extends Ataque {
         o quanto o modifier será alterado (valores positivos alteram o modifier do
         atacante e valores negativos alteram o modifier do oponente). O terceiro valor
         [chance] representa a probabilidade em % da mudança do status ocorrer. */
-        int[][] matrixModifier = {
-            {-6 , 33},
-            {-5 , 37},
-            {-4 , 43},
-            {-3 , 50},
-            {-2 , 60},
-            {-1 , 75},
-            {0 , 100},
-            {1 , 133},
-            {2 , 166},
-            {3 , 200},
-            {4 , 233},
-            {5 , 266},
-            {6 , 300},               
-        };
         /*if (this.chance > Math.random() * 100){
             switch(this.mod){
                 case "Accuracy":

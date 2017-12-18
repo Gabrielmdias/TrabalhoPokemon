@@ -21,19 +21,23 @@ public class AtaqueStatus extends Ataque {
     }
 
     public void efeito(Pokemon usuario, Pokemon oponente) {
-
-        oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
-
-        if (this.chance > Math.random() * 100) {
-            if ("Confusion".equals(this.status)) {
-                oponente.setConfusion(true);
-            } else if ("Flinch".equals(this.status)) {
-                oponente.setFinch(true);
-            } else {
-                oponente.setStatus(this.status);
-            }
-        }
-        
         this.setPpAtual(this.getPpAtual() - 1);
+        oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
+        
+        if(calculoAcerto(usuario, oponente)){
+            if (this.chance > Math.random() * 100) {
+                 switch (this.status) {
+                    case "Confusion":
+                        oponente.setConfusion(true);
+                        break;
+                    case "Flinch":
+                        oponente.setFinch(true);
+                        break;
+                    default:
+                        oponente.setStatus(this.status);
+                        break;
+                }
+            } 
+        }
     }
 }

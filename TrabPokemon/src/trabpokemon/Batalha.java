@@ -81,7 +81,7 @@ public class Batalha {
                 int level = scanner.nextInt();
                 for (int at = 0; at < 4; at++) {
                     int idAtk;
-                    if ((idAtk = scanner.nextInt()) > 0){
+                    if ((idAtk = scanner.nextInt()-1) > 0){
                         switch (tabAtk.get(idAtk)[6]) { // [6] para pegar a classe  
 
                             case "hp":
@@ -198,8 +198,24 @@ public class Batalha {
             }
             
             //comportamneto dos status
+        if(jogador.get(0).getPokemons().get(0).getHpAtual() <= 0){
+            jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
+            System.out.println("Jogador 2 ganhaou");
+        }
+        if(jogador.get(1).getPokemons().get(0).getHpAtual() <= 0){
+            jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
+            System.out.println("Jogador 1 ganhaou");
+            }
         }
 
+    }
+    
+    public boolean bataraAcabou(){
+        if (jogador.get(0).getPokemons().get(0).getStatus() != Status.FAINTED
+            && jogador.get(1).getPokemons().get(0).getStatus() != Status.FAINTED)
+            return false;
+        else
+           return true;
     }
 
 }

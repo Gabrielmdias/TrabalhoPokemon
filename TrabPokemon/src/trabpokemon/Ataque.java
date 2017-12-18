@@ -44,9 +44,12 @@ public abstract class Ataque {
     }    
     
     public void efeito(Pokemon usuario, Pokemon oponente){
-        oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
-        System.out.println("Vida pokemon jogador 1 :"+ usuario.getHpAtual());
-        System.out.println("Vida pokemon jogador 2 :"+ oponente.getHpAtual());
+        this.ppAtual -= 1;
+        if(calculoAcerto(usuario, oponente)){
+            oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
+            System.out.println("Vida pokemon jogador 1 :"+ usuario.getHpAtual());
+            System.out.println("Vida pokemon jogador 2 :"+ oponente.getHpAtual());
+        }
     }
     
     public boolean calculoCritico(Pokemon p) {
@@ -60,7 +63,7 @@ public abstract class Ataque {
     }
     
     public boolean calculoAcerto(Pokemon usuario, Pokemon oponente) {
-            double prob = this.accuracy * (usuario.getModifierAccuracy()/oponente.getModifierEvasion());
+            double prob = this.accuracy * (usuario.modifier(usuario.getModifierAccuracy())/oponente.modifier(oponente.getModifierEvasion()));
         return (Math.random() <= prob);
     }
     
