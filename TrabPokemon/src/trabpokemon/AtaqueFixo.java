@@ -16,9 +16,12 @@ public class AtaqueFixo extends Ataque{
         super(id, nome, tipo, ppMax, power, accuracy);
         this.val = val;
     }
-
-    @Override
-    public void efeito(Pokemon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    
+    public void efeito(Pokemon usuario, Pokemon oponente) {
+        if(this.val == usuario.getLevel())
+            oponente.setHpAtual(oponente.getHpAtual() - usuario.getLevel());
+        else 
+            oponente.setHpAtual(oponente.getHpAtual() - this.val);
     }
 }

@@ -17,11 +17,16 @@ public class AtaqueMultihit extends Ataque{
         this.min = min;
         this.max = max;
     }
+   
 
     
-
-    @Override
-    public void efeito(Pokemon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void efeito(Pokemon usuario, Pokemon oponente) {
+        /*O cálculo do dano do ataque é realizado diversas vezes aleatoriamente (a
+        checagem de acerto e crítico é feita apenas uma vez no começo). O primeiro
+        valor [min] define o número mínimo de vezes que o dano será dado ao oponente,
+        enquanto o segundo valor [max] define o número máximo de vezes que o dano
+        será aplicado. */
+        calculoAcerto(usuario, oponente);
+        calculoCritico(usuario);
     }
 }

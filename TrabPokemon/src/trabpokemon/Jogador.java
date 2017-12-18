@@ -41,7 +41,7 @@ public abstract class Jogador {
         Collections.swap(this.getPokemons(), 0, pokemonPrincipal);
     }
     
-    public void usarAtaque(int ataque) {
-        this.getPokemons().get(0).getAtaque().get(ataque).efeito(this.pokemons.get(0));
+    void usarAtaque(int ataque, Pokemon get) {
+        this.getPokemons().get(0).getAtaque().get(ataque).efeito(this.pokemons.get(0), this.pokemons.get(1));
     }
 }

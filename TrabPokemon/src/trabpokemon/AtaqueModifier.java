@@ -20,7 +20,6 @@ public class AtaqueModifier extends Ataque {
         this.chance = chance;
     }
     
-    @Override
     public void efeito(Pokemon p) {
         
     }

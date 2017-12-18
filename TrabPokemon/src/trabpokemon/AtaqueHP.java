@@ -17,12 +17,13 @@ public class AtaqueHP extends Ataque{
         super(id, nome, tipo, ppMax, power, accuracy);
         this.valor = valor;
         this.porcentagem = porcentagem;
-    }
-    
-    
+    } 
 
-    @Override
-    public void efeito(Pokemon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void efeito(Pokemon usuario, Pokemon oponente) {
+        
+        oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
+        
+        usuario.setHpAtual(usuario.getHpAtual() + (this.valor * this.porcentagem));
+        
     }
 }

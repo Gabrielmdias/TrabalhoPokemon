@@ -29,7 +29,11 @@ public class TrabPokemon {
         }
         
         batalha.inicializarJogadores();
-        batalha.executarTurno();
+        
+        do {
+            batalha.executarTurno();   
+        } while(true);
+        
 
     }    
 }

@@ -11,12 +11,12 @@ package trabpokemon;
  */
 public enum Status {
     OK("Ok"),
-    FAINTED("Fainted"),
     BURN("Burn"),
     FROZEN("Frozen"),
     PARALYSIS("Paralysis"),
     POISON("Poison"),
-    SLEEP("Sleep");
+    SLEEP("Sleep"),
+    FAINTED("Fainted");
     
     private final String status;
     

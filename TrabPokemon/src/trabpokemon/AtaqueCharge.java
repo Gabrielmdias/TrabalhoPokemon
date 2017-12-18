@@ -15,9 +15,8 @@ public class AtaqueCharge extends Ataque{
         super(id, nome, tipo, ppMax, power, accuracy);
     }
 
-    @Override
     public void efeito(Pokemon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }
