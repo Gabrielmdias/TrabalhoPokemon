@@ -60,7 +60,7 @@ public abstract class Ataque {
     }
     
     public boolean calculoAcerto(Pokemon usuario, Pokemon oponente) {
-        double prob = this.accuracy * (usuario.getModifierAccuracy()/oponente.getModifierEvasion());
+            double prob = this.accuracy * (usuario.getModifierAccuracy()/oponente.getModifierEvasion());
         return (Math.random() <= prob);
     }
     
