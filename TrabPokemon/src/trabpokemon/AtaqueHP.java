@@ -22,7 +22,7 @@ public class AtaqueHP extends Ataque{
     public void efeito(Pokemon usuario, Pokemon oponente) {
         this.setPpAtual(this.getPpAtual() - 1);
         oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
-        
+      
         usuario.setHpAtual(usuario.getHpAtual() + (this.valor * this.porcentagem));
         
     }

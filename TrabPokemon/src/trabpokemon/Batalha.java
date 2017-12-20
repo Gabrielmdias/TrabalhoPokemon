@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -82,7 +83,14 @@ public class Batalha {
                     int idAtk;
                     if ((idAtk = scanner.nextInt() - 1) > 0) {
                         switch (tabAtk.get(idAtk)[6]) { // [6] para pegar a classe  
-
+                            case "comum":
+                                atk.add(new Ataque(Integer.parseInt(tabAtk.get(idAtk)[0]),
+                                        tabAtk.get(idAtk)[1],
+                                        tabAtk.get(idAtk)[2],
+                                        tabAtk.get(idAtk)[3],
+                                        tabAtk.get(idAtk)[4],
+                                        tabAtk.get(idAtk)[5]));
+                                break;
                             case "hp":
                                 int valor;
                                 if (tabAtk.get(idAtk)[7].split(",")[0].trim().equals("max_hp")) {
@@ -169,19 +177,21 @@ public class Batalha {
         Collections.sort(jogador.get(0).getPokemons());
         Collections.sort(jogador.get(1).getPokemons());
 
-        if (jogador.get(0).getPokemons().get(0).getStatus() != Status.FAINTED
-                && jogador.get(1).getPokemons().get(0).getStatus() != Status.FAINTED) {
+        if (!jogador.get(0).getPokemons().get(0).getStatus().equals(Status.FAINTED)
+                || !jogador.get(1).getPokemons().get(0).getStatus().equals(Status.FAINTED)) {
             
             ArrayList<int[]> comando = new ArrayList<>();
-            for (Jogador j : jogador) {
-                
+            for (Jogador j : jogador) { 
+                System.out.println("Jogador "+ jogador.indexOf(j));
                 comando.add(j.escolherComando());
             }
 
             if (comando.get(0)[0] == 1) { // se comando do jogador 0 for trocar pokemon
+                System.out.println("Jogador 1 realizou uma troca");
                 jogador.get(0).trocarPokemon(comando.get(0)[1]);
             }
             if (comando.get(1)[0] == 1) { // se comando do jogador 1 for trocar pokemon
+                System.out.println("Jogador 2 realizou uma troca");
                 jogador.get(1).trocarPokemon(comando.get(1)[1]);
             }
 
@@ -205,22 +215,29 @@ public class Batalha {
 
             //comportamneto dos status
             if (jogador.get(0).getPokemons().get(0).getHpAtual() <= 0) {
-                System.out.println("Jogador 2 ganhaou");
+                jogador.get(0).getPokemons().get(0).setHpAtual(0);
+                System.out.println("Pokemon do jogador 2 ganhou");
                 jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
-                System.exit(0);
             }
             if (jogador.get(1).getPokemons().get(0).getHpAtual() <= 0) {
-                System.out.println("Jogador 1 ganhaou");
+                jogador.get(1).getPokemons().get(0).setHpAtual(0);
+                System.out.println("Pokemon do Jogador 1 ganhou");
                 jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
-                System.exit(0);
             }
+            imprimePokemonsJogadores();
+        } else {
+            System.out.println("Acabou");
+            System.exit(0);
         }
+        
 
     }
 
     public boolean bataraAcabou() {
-        if (jogador.get(0).getPokemons().get(0).getStatus() != Status.FAINTED
-                && jogador.get(1).getPokemons().get(0).getStatus() != Status.FAINTED) {
+        Collections.sort(jogador.get(0).getPokemons());
+        Collections.sort(jogador.get(1).getPokemons());
+        if (!jogador.get(0).getPokemons().get(0).getStatus().equals(Status.FAINTED)
+                && !jogador.get(1).getPokemons().get(0).getStatus().equals(Status.FAINTED)) {
             return false;
         } else {
             return true;
@@ -230,7 +247,7 @@ public class Batalha {
     public void imprimePokemonsJogadores(){
         for (int i = 0; i < 2; i++) {
             System.out.println("Jogador " + (i+1));
-            System.out.println("Quantidade pokemon: " + jogador.get(i).getPokemons().size());
+            System.out.println("Quantidade pokemon: " + verificaFainted(jogador.get(i).getPokemons()) + "/"+jogador.get(i).getPokemons().size());
             for (int j = 0; j < jogador.get(i).getPokemons().size(); j++) {
                 System.out.println("Pokemon "+ (j+1) + " especie: "+ jogador.get(i).getPokemons().get(j).getEspecie().getNome());
                 System.out.println("Level: "+ jogador.get(i).getPokemons().get(j).getLevel());
@@ -240,5 +257,15 @@ public class Batalha {
             }
             System.out.println("");
         }
+    }
+    
+    public int verificaFainted(List<Pokemon> time){
+        int qtd = time.size();
+        for(Pokemon pokemon : time){
+            if(pokemon.getStatus().equals(Status.FAINTED)){
+                qtd--;
+            }
+        }
+        return qtd;
     }
 }

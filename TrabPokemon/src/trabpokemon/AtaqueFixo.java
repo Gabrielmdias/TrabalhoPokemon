@@ -23,7 +23,6 @@ public class AtaqueFixo extends Ataque{
         if(this.val == usuario.getLevel())
             oponente.setHpAtual(oponente.getHpAtual() - usuario.getLevel());
         else 
-            oponente.setHpAtual(oponente.getHpAtual() - this.val);
-        
+            oponente.setHpAtual(oponente.getHpAtual() - this.val);    
     }
 }

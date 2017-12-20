@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author gabriel
  */
-public abstract class Ataque {
+public class Ataque {
     private int id;
     private String nome;
     private Tipo tipo;

@@ -24,20 +24,18 @@ public class AtaqueStatus extends Ataque {
         this.setPpAtual(this.getPpAtual() - 1);
         oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
         
-        if(calculoAcerto(usuario, oponente)){
-            if (this.chance > Math.random() * 100) {
-                 switch (this.status) {
-                    case "Confusion":
-                        oponente.setConfusion(true);
-                        break;
-                    case "Flinch":
-                        oponente.setFinch(true);
-                        break;
-                    default:
-                        oponente.setStatus(this.status);
-                        break;
-                }
-            } 
+        if (this.chance > (int)Math.random() * 100) {
+             switch (this.status) {
+                case "Confusion":
+                    oponente.setConfusion(true);
+                    break;
+                case "Flinch":
+                    oponente.setFinch(true);
+                    break;
+                default:
+                    oponente.setStatus(this.status);
+                    break;
+            }
         }
     }
 }
