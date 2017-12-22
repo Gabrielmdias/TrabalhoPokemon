@@ -177,13 +177,18 @@ public class Batalha {
         Collections.sort(jogador.get(0).getPokemons());
         Collections.sort(jogador.get(1).getPokemons());
 
-        if (!jogador.get(0).getPokemons().get(0).getStatus().equals(Status.FAINTED)
-                || !jogador.get(1).getPokemons().get(0).getStatus().equals(Status.FAINTED)) {
+        if (batalhaAcabou()) {
             
             ArrayList<int[]> comando = new ArrayList<>();
-            for (Jogador j : jogador) { 
-                System.out.println("Jogador "+ jogador.indexOf(j));
+            for (Jogador j : jogador) {
+                if(jogador.get(0).getPokemons().get(0).getHpAtual() >= 0 || jogador.get(1).getPokemons().get(0).getHpAtual() >= 0){
+                System.out.println("Jogador "+ (jogador.indexOf(j) + 1));
                 comando.add(j.escolherComando());
+                }
+                else {
+                    System.out.println("Acabou");
+                    System.exit(0);
+                }
             }
 
             if (comando.get(0)[0] == 1) { // se comando do jogador 0 for trocar pokemon
@@ -195,35 +200,53 @@ public class Batalha {
                 jogador.get(1).trocarPokemon(comando.get(1)[1]);
             }
 
-            if (jogador.get(0).getPokemons().get(0).getSpd() > jogador.get(1).getPokemons().get(0).getSpd()) { //Ataque
+            if (jogador.get(0).getPokemons().get(0).getSpd() >= jogador.get(1).getPokemons().get(0).getSpd()) { //Ataque
                 // pokemon do jogador 0 mais rapido primeiro
-                if (comando.get(0)[0] == 2) {
+                if (comando.get(0)[0] == 2 && (jogador.get(0).getPokemons().get(0).getHpAtual() >= 0)) {
                     jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(0).getPokemons().get(0), jogador.get(1).getPokemons().get(0));
+                    if(jogador.get(1).getPokemons().get(0).getHpAtual() <= 0){
+                        jogador.get(1).getPokemons().get(0).setHpAtual(0);
+                        jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
+                        //System.out.println("Vida pokemon jogador 1 :"+ jogador.get(0).getPokemons().get(0).getHpAtual());
+                       // System.out.println("Vida pokemon jogador 2 :"+ jogador.get(1).getPokemons().get(0).getHpAtual());
+                        System.out.println("Jogador 1 ganhou");
+                    }
                 }
-                if (comando.get(1)[0] == 2) {
+                if (comando.get(1)[0] == 2 && (jogador.get(1).getPokemons().get(0).getHpAtual() >= 0)) {
                     jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0), jogador.get(0).getPokemons().get(0));
+                    if(jogador.get(0).getPokemons().get(0).getHpAtual() <= 0){
+                        jogador.get(0).getPokemons().get(0).setHpAtual(0);
+                        jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
+                        //System.out.println("Vida pokemon jogador 1 :"+ jogador.get(0).getPokemons().get(0).getHpAtual());
+                       // System.out.println("Vida pokemon jogador 2 :"+ jogador.get(1).getPokemons().get(0).getHpAtual());
+                        System.out.println("Jogador 2 ganhou");
+                    }
                 }
             } else {
                 //pokemon do jogador 1 mais rapido primeiro
-                if (comando.get(1)[0] == 2) {
+                if (comando.get(1)[0] == 2 && (jogador.get(1).getPokemons().get(0).getHpAtual() >= 0)) {
                     jogador.get(1).usarAtaque(comando.get(1)[1], jogador.get(1).getPokemons().get(0), jogador.get(0).getPokemons().get(0));
+                    if(jogador.get(0).getPokemons().get(0).getHpAtual() <= 0){
+                        jogador.get(0).getPokemons().get(0).setHpAtual(0);
+                        jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
+                        //System.out.println("Vida pokemon jogador 1 :"+ jogador.get(0).getPokemons().get(0).getHpAtual());
+                        //System.out.println("Vida pokemon jogador 2 :"+ jogador.get(1).getPokemons().get(0).getHpAtual());
+                        System.out.println("Jogador 2 ganhou");
+                    }
                 }
-                if (comando.get(0)[0] == 2) {
+                if (comando.get(0)[0] == 2 && (jogador.get(0).getPokemons().get(0).getHpAtual() >= 0)) {
                     jogador.get(0).usarAtaque(comando.get(0)[1], jogador.get(0).getPokemons().get(0), jogador.get(1).getPokemons().get(0));
+                    if(jogador.get(1).getPokemons().get(0).getHpAtual() <= 0){
+                        jogador.get(1).getPokemons().get(0).setHpAtual(0);
+                        jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
+                        //System.out.println("Vida pokemon jogador 1 :"+ jogador.get(0).getPokemons().get(0).getHpAtual());
+                        //System.out.println("Vida pokemon jogador 2 :"+ jogador.get(1).getPokemons().get(0).getHpAtual());
+                        System.out.println("Jogador 1 ganhou");
+                    }
                 }
             }
-
-            //comportamneto dos status
-            if (jogador.get(0).getPokemons().get(0).getHpAtual() <= 0) {
-                jogador.get(0).getPokemons().get(0).setHpAtual(0);
-                System.out.println("Pokemon do jogador 2 ganhou");
-                jogador.get(0).getPokemons().get(0).setStatus(Status.FAINTED);
-            }
-            if (jogador.get(1).getPokemons().get(0).getHpAtual() <= 0) {
-                jogador.get(1).getPokemons().get(0).setHpAtual(0);
-                System.out.println("Pokemon do Jogador 1 ganhou");
-                jogador.get(1).getPokemons().get(0).setStatus(Status.FAINTED);
-            }
+            System.out.println("Vida pokemon jogador 1 :"+ jogador.get(0).getPokemons().get(0).getHpAtual());
+            System.out.println("Vida pokemon jogador 2 :"+ jogador.get(1).getPokemons().get(0).getHpAtual());
             imprimePokemonsJogadores();
         } else {
             System.out.println("Acabou");
@@ -233,14 +256,14 @@ public class Batalha {
 
     }
 
-    public boolean bataraAcabou() {
+    public boolean batalhaAcabou() {
         Collections.sort(jogador.get(0).getPokemons());
         Collections.sort(jogador.get(1).getPokemons());
         if (!jogador.get(0).getPokemons().get(0).getStatus().equals(Status.FAINTED)
-                && !jogador.get(1).getPokemons().get(0).getStatus().equals(Status.FAINTED)) {
-            return false;
-        } else {
+                || !jogador.get(1).getPokemons().get(0).getStatus().equals(Status.FAINTED)) {
             return true;
+        } else {
+            return false;
         }
     }
     

@@ -47,8 +47,6 @@ public class Ataque {
         this.ppAtual -= 1;
         if(calculoAcerto(usuario, oponente)){
             oponente.setHpAtual(oponente.getHpAtual() - calculoDano(usuario, oponente));
-            System.out.println("Vida pokemon jogador 1 :"+ usuario.getHpAtual());
-            System.out.println("Vida pokemon jogador 2 :"+ oponente.getHpAtual());
         }
     }
     
